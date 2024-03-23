@@ -77,8 +77,3 @@ class Trie:
                 if len(node.children) > 0 or node.isWord:
                     break
         return True
-
-
-
-
-   
