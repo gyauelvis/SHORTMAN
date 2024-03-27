@@ -68,5 +68,6 @@
   },
   "color": { "meaning": "Bright colored", "synonym": ["tint", "shade"] },
   "tint": { "meaning": "Word Not Found, check out color", "synonym": [] },
-  "shade": { "meaning": "Word Not Found, check out color", "synonym": [] }
+  "shade": { "meaning": "Word Not Found, check out color", "synonym": [] },
+  "allWords":["apple", "banana", "book","cat", "cloud","open","sleep", "tasty", "walk", "yellow", "color"]
 }

@@ -10,36 +10,19 @@ from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
-
-
-class SuggestionPopup(Popup):
-    def __init__(self, **kwargs):
-        super(SuggestionPopup, self).__init__(**kwargs)
-        self.title = "Suggested Words"
-        self.size_hint = (None, None)
-        self.size = (200, 200)
-        self.auto_dismiss = False
-        self.background = "red"
-
-        # Create a layout for the popup
-        layout = BoxLayout(orientation='vertical')
-
-        # Add a label for displaying the suggested words
-        self.suggestion_label = Label(text="")
-
-        layout.add_widget(self.suggestion_label)
-        self.content = layout
-
-    def update_suggestions(self, suggestions):
-        self.suggestion_label.text = "\n".join(suggestions)
-
-
-
-# importing db-opeations class
 from db_operations import DbOperations
+from Trie import Trie
+
+searchedWord:str = ''
 
 db = DbOperations()
 dictionary = db.readJson()
+keys = dictionary["allWords"]
+trie = Trie()
+
+for key in keys:
+    trie.insert(key)
+
 
 
 #functions searches for word
@@ -63,7 +46,6 @@ def shouldFindSyn(word: str, synonymArr: list):
 class MainScreen(Screen):
     def __init__(self, **kwargs):
         super(MainScreen, self).__init__(**kwargs)
-        self.suggestion_popup = SuggestionPopup()
         
         # Create a FloatLayout
         layout = FloatLayout()
@@ -81,10 +63,10 @@ class MainScreen(Screen):
         
         # Add an image
         image = Image(
-            source="Images/open-book.png",  # Path to your image file
+            source="Images/open-book.png",  
             size_hint=(None, None),
-            size=(300, 300),  # Adjust size as needed
-            pos_hint={'center_x': 0.5, 'center_y': 0.6}  # Adjust position as needed
+            size=(300, 300),  
+            pos_hint={'center_x': 0.5, 'center_y': 0.6}  
         )
         layout.add_widget(image)
         
@@ -95,12 +77,12 @@ class MainScreen(Screen):
             size=(250, 48),
             pos_hint={'center_x': 0.5, 'center_y': 0.3}
         )
-        self.text_input.bind(on_text_validate=self.search_word)  # Bind enter key to search_word method 
+        self.text_input.bind(on_text_validate=self.search_word) 
         layout.add_widget(self.text_input)
         
         # Add a label for displaying word not found message (initially hidden)
         self.error_label = Label(
-            text="Word not found in dictionary.",
+            text= f"Word not found in dictionary",
             size_hint=(None, None),
             size=(250, 48),
             pos_hint={'center_x': 0.5, 'center_y': 0.25},
@@ -108,6 +90,8 @@ class MainScreen(Screen):
             opacity=0  # Initially hidden
         )
         layout.add_widget(self.error_label)
+        
+        self.text_input.bind(text=self.update_error_label) 
         
         # Add a search button
         search_button = MDIconButton(
@@ -123,6 +107,10 @@ class MainScreen(Screen):
             icon="microphone",
             pos_hint={'right': 0.75, 'center_y': 0.3}
         )
+
+        
+
+
         layout.add_widget(microphone_button)
         
 
@@ -143,9 +131,18 @@ class MainScreen(Screen):
         # Add the layout to the screen
         self.add_widget(layout)
 
+    def update_error_label(self, instance, value):
+            searched_word = value.lower()
+            similar_words = trie.get_similar_words(searched_word)
+            if similar_words:
+                self.error_label.text = f"Word not found in dictionary. Did you mean {similar_words[0]}"
+            else:
+                self.error_label.text = "Word not found in dictionary."
+                
     def search_word(self, instance):
         # Get the entered word from the text input field
         word = self.text_input.text
+        searchedWord = word.lower()
         
         result = searchWordFromDictionary(word.lower())
         
@@ -156,10 +153,13 @@ class MainScreen(Screen):
             self.manager.current = 'meaning_screen'
         else:
             # Display word not found message
+            
             self.error_label.opacity = 1  # Show error label
 
     def go_to_add_word_screen(self, instance):
         self.manager.current = 'add_word_screen'
+    
+    
 
 class AddWordScreen(Screen):
     def __init__(self, **kwargs):
