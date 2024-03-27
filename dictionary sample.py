@@ -12,6 +12,17 @@ from kivy.uix.popup import Popup
 from kivy.uix.label import Label
 from db_operations import DbOperations
 from Trie import Trie
+import pyttsx3 as sx3
+# initializing the object
+engine = sx3.init()
+
+
+def text_to_speech(info):
+    engine.say(info)
+    engine.runAndWait()
+
+
+
 
 searchedWord:str = ''
 
@@ -101,17 +112,6 @@ class MainScreen(Screen):
 
         search_button.bind(on_release=self.search_word)
         layout.add_widget(search_button)
-        
-        # Add a button for microphone
-        microphone_button = MDIconButton(
-            icon="microphone",
-            pos_hint={'right': 0.75, 'center_y': 0.3}
-        )
-
-        
-
-
-        layout.add_widget(microphone_button)
         
 
         # Add a button to navigate to the AddWordScreen
@@ -217,7 +217,6 @@ class AddWordScreen(Screen):
 
         synonymArr = []
         value = ""
-        print(synonym)
 
         # indexf for traversing through synonym
         i = 0
@@ -299,8 +298,16 @@ class MeaningScreen(Screen):
 
         self.layout.add_widget(delete_button)
 
+        audio_button = Button(size_hint=(None, None), size=('24dp', '24dp'),
+                              pos_hint={'right': 0.55, 'top': -0.65})
+        
+        audio_button.bind(on_release=self.play_audio)
+        audio_button.background_normal = 'Images/audio.png'  
+        meaning_box.add_widget(audio_button)
+
         # Add the layout to the screen
         self.add_widget(self.layout)
+
 
     def display_meaning(self, word, meaning:str,synonym:list, image_filename):
         # Update the labels with the searched word and its meaning
@@ -325,6 +332,9 @@ class MeaningScreen(Screen):
     def go_back(self, instance):
         # Switch back to the main screen
         self.manager.current = 'main_screen'
+    
+    def play_audio(self, instance):
+        text_to_speech(searchedWord)
     
     def delete_word(self, instance):
         word = self.word_label.text
