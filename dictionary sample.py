@@ -143,6 +143,7 @@ class MainScreen(Screen):
         # Get the entered word from the text input field
         word = self.text_input.text
         searchedWord = word.lower()
+        print(searchedWord)
         
         result = searchWordFromDictionary(word.lower())
         
@@ -335,7 +336,7 @@ class MeaningScreen(Screen):
         self.manager.current = 'main_screen'
     
     def play_audio(self, instance):
-        text_to_speech(searchedWord)
+        text_to_speech(self.word_label.text)
     
     def delete_word(self, instance):
         word = self.word_label.text
