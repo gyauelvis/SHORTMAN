@@ -73,9 +73,6 @@
     "partOfSpeech": "Adjective",
     "img": "Images/yellow_image.jpg"
   },
-  "color": { "meaning": "Bright colored", "synonym": ["tint", "shade"] },
-  "tint": { "meaning": "Word Not Found, check out color", "synonym": [] },
-  "shade": { "meaning": "Word Not Found, check out color", "synonym": [] },
   "allWords": [
     "apple",
     "banana",
@@ -88,7 +85,5 @@
     "walk",
     "yellow",
     "color"
-  ],
-  "eugene": { "meaning": "KDkd", "synonym": ["gyimah"] },
-  "gyimah": { "meaning": "Boy", "synonym": [] }
+  ]
 }

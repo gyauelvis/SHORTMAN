@@ -240,6 +240,7 @@ class AddWordScreen(Screen):
 
             # Add the word to the dictionary
             dictionary[word.lower()] = data
+            dictionary['allWords'].append(word.lower())
             db.writeToJson(dictionary)
 
             shouldFindSyn(word.lower(), synonymArr)
@@ -341,6 +342,7 @@ class MeaningScreen(Screen):
         # Remove the word from the dictionary and image hash table
         if word in dictionary:
             del dictionary[word]
+            dictionary['allWords'].remove(word)
             db.writeToJson(dictionary)
 
         print("Word deleted successfully:", word)
