@@ -1,1 +1,72 @@
-{"apple": {"meaning": "greenish fruit", "synonym": ["fruit"], "partOfSpeech": "Noun", "img": "Images/apple_image.jpg"}, "banana": {"meaning": "long, curved yellow fruit with a soft interior", "synonym": ["fruit"], "partOfSpeech": "Noun", "img": "Images/banana_image.jpg"}, "book": {"meaning": "collection of pages containing information, stories, etc.", "synonym": ["publication", "tome", "volume"], "partOfSpeech": "Noun", "img": "Images/book_image.jpg"}, "cat": {"meaning": "furry, domesticated carnivorous mammal", "synonym": ["feline"], "antonym": ["dog"], "partOfSpeech": "Noun", "img": "Images/cat_image.jpg"}, "cloud": {"meaning": "visible mass of water vapor in the air", "synonym": ["mist"], "antonym": ["sunshine"], "partOfSpeech": "Noun", "img": "Images/cloud_image.jpg"}, "open": {"meaning": "not shut or closed", "synonym": ["unclosed", "afloat"], "antonym": ["closed"], "partOfSpeech": "Adjective", "img": "Images/open_image.jpg"}, "sleep": {"meaning": "state of rest for the body", "synonym": ["slumber", "drowsiness"], "antonym": ["wakefulness"], "partOfSpeech": "Verb", "img": "Images/sleep_image.jpg"}, "tasty": {"meaning": "having a pleasant flavor", "synonym": ["delicious", "appetizing"], "antonym": ["bland", "unpleasant"], "partOfSpeech": "Adjective", "img": "Image/tasty_image.jpg"}, "walk": {"meaning": "to go on foot", "synonym": ["stroll", "ambulate"], "antonym": ["run"], "partOfSpeech": "Verb", "img": "Images/walk_image.jpg"}, "yellow": {"meaning": "bright color resembling sunshine", "synonym": ["amber", "gold"], "antonym": ["blue"], "partOfSpeech": "Adjective", "img": "Images/yellow_image.jpg"}, "color": {"meaning": "Bright colored", "synonym": ["tint", "shade"]}, "tint": {"meaning": "Word Not Found, check out color", "synonym": []}, "shade": {"meaning": "Word Not Found, check out color", "synonym": []}}
+{
+  "apple": {
+    "meaning": "greenish fruit",
+    "synonym": ["fruit"],
+    "partOfSpeech": "Noun",
+    "img": "Images/apple_image.jpg"
+  },
+  "banana": {
+    "meaning": "long, curved yellow fruit with a soft interior",
+    "synonym": ["fruit"],
+    "partOfSpeech": "Noun",
+    "img": "Images/banana_image.webp"
+  },
+  "book": {
+    "meaning": "collection of pages containing information, stories, etc.",
+    "synonym": ["publication", "tome", "volume"],
+    "partOfSpeech": "Noun",
+    "img": "Images/book_image.jpg"
+  },
+  "cat": {
+    "meaning": "furry, domesticated carnivorous mammal",
+    "synonym": ["feline"],
+    "antonym": ["dog"],
+    "partOfSpeech": "Noun",
+    "img": "Images/cat_image.jpg"
+  },
+  "cloud": {
+    "meaning": "visible mass of water vapor in the air",
+    "synonym": ["mist"],
+    "antonym": ["sunshine"],
+    "partOfSpeech": "Noun",
+    "img": "Images/cloud_image.jpg"
+  },
+  "open": {
+    "meaning": "not shut or closed",
+    "synonym": ["unclosed", "afloat"],
+    "antonym": ["closed"],
+    "partOfSpeech": "Adjective",
+    "img": "Images/open_image.jpg"
+  },
+  "sleep": {
+    "meaning": "state of rest for the body",
+    "synonym": ["slumber", "drowsiness"],
+    "antonym": ["wakefulness"],
+    "partOfSpeech": "Verb",
+    "img": "Images/sleep_image.jpg"
+  },
+  "tasty": {
+    "meaning": "having a pleasant flavor",
+    "synonym": ["delicious", "appetizing"],
+    "antonym": ["bland", "unpleasant"],
+    "partOfSpeech": "Adjective",
+    "img": "Image/tasty_image.jpg"
+  },
+  "walk": {
+    "meaning": "to go on foot",
+    "synonym": ["stroll", "ambulate"],
+    "antonym": ["run"],
+    "partOfSpeech": "Verb",
+    "img": "Images/walk_image.jpg"
+  },
+  "yellow": {
+    "meaning": "bright color resembling sunshine",
+    "synonym": ["amber", "gold"],
+    "antonym": ["blue"],
+    "partOfSpeech": "Adjective",
+    "img": "Images/yellow_image.jpg"
+  },
+  "color": { "meaning": "Bright colored", "synonym": ["tint", "shade"] },
+  "tint": { "meaning": "Word Not Found, check out color", "synonym": [] },
+  "shade": { "meaning": "Word Not Found, check out color", "synonym": [] }
+}

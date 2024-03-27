@@ -8,7 +8,31 @@ from kivymd.uix.toolbar import MDTopAppBar
 from kivy.uix.image import Image
 from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
-# from dictionaryWords import dictionryWords, image_hash_table
+from kivy.uix.popup import Popup
+from kivy.uix.label import Label
+
+
+class SuggestionPopup(Popup):
+    def __init__(self, **kwargs):
+        super(SuggestionPopup, self).__init__(**kwargs)
+        self.title = "Suggested Words"
+        self.size_hint = (None, None)
+        self.size = (200, 200)
+        self.auto_dismiss = False
+        self.background = "red"
+
+        # Create a layout for the popup
+        layout = BoxLayout(orientation='vertical')
+
+        # Add a label for displaying the suggested words
+        self.suggestion_label = Label(text="")
+
+        layout.add_widget(self.suggestion_label)
+        self.content = layout
+
+    def update_suggestions(self, suggestions):
+        self.suggestion_label.text = "\n".join(suggestions)
+
 
 
 # importing db-opeations class
@@ -39,6 +63,7 @@ def shouldFindSyn(word: str, synonymArr: list):
 class MainScreen(Screen):
     def __init__(self, **kwargs):
         super(MainScreen, self).__init__(**kwargs)
+        self.suggestion_popup = SuggestionPopup()
         
         # Create a FloatLayout
         layout = FloatLayout()
@@ -66,11 +91,11 @@ class MainScreen(Screen):
         # Add a text input field
         self.text_input = MDTextField(
             hint_text="Enter a word",
-            size_hint=(None, None),  # Disable size_hint so you can specify exact size
+            size_hint=(None, None), # Disable size_hint so you can specify exact size
             size=(250, 48),
             pos_hint={'center_x': 0.5, 'center_y': 0.3}
         )
-        self.text_input.bind(on_text_validate=self.search_word)  # Bind enter key to search_word method
+        self.text_input.bind(on_text_validate=self.search_word)  # Bind enter key to search_word method 
         layout.add_widget(self.text_input)
         
         # Add a label for displaying word not found message (initially hidden)
@@ -89,10 +114,18 @@ class MainScreen(Screen):
             icon="magnify",
             pos_hint={'right': 0.7, 'center_y': 0.3}
         )
-        
+
         search_button.bind(on_release=self.search_word)
         layout.add_widget(search_button)
         
+        # Add a button for microphone
+        microphone_button = MDIconButton(
+            icon="microphone",
+            pos_hint={'right': 0.75, 'center_y': 0.3}
+        )
+        layout.add_widget(microphone_button)
+        
+
         # Add a button to navigate to the AddWordScreen
        
         add_word_button = MDFlatButton(
