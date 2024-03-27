@@ -66,13 +66,6 @@
     "partOfSpeech": "Adjective",
     "img": "Images/yellow_image.jpg"
   },
-  "yue": {
-    "meaning": "bright color resembling sunshine",
-    "synonym": ["amber", "gold"],
-    "antonym": ["blue"],
-    "partOfSpeech": "Adjective",
-    "img": "Images/yellow_image.jpg"
-  },
   "allWords": [
     "apple",
     "banana",
@@ -84,6 +77,8 @@
     "tasty",
     "walk",
     "yellow",
-    "color"
-  ]
+    "color",
+    "aba"
+  ],
+  "aba": { "meaning": "d1", "synonym": ["elvis"] }
 }

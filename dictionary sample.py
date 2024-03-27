@@ -44,11 +44,13 @@ def searchWordFromDictionary(word):
 #function to work on getting synonyms
 def shouldFindSyn(word: str, synonymArr: list):
     for synonym in synonymArr:
+        synonym = synonym.lower()
         data = {
             "meaning": f"Word Not Found, check out {word}",
             "synonym": [],
         }
-        dictionary[synonym] = data
+        if(not synonym in dictionary):
+            dictionary[synonym] = data
 
     db.writeToJson(dictionary)
 
@@ -343,12 +345,17 @@ class MeaningScreen(Screen):
         # Remove the word from the dictionary and image hash table
         if word in dictionary:
             del dictionary[word]
-            dictionary['allWords'].remove(word)
+
+            new_all_words:list = dictionary['allWords']
+            print(new_all_words)
+            new_all_words.remove(word)
+            dictionary['allWords'] = new_all_words
             db.writeToJson(dictionary)
 
         print("Word deleted successfully:", word)
         # Go back to the main screen
         self.manager.current = 'main_screen'
+        
 
         
 
