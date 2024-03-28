@@ -51,6 +51,7 @@ def shouldFindSyn(word: str, synonymArr: list):
         }
         if(not synonym in dictionary):
             dictionary[synonym] = data
+            dictionary['allWords'] = synonym
 
     db.writeToJson(dictionary)
 
@@ -344,10 +345,15 @@ class MeaningScreen(Screen):
         word = self.word_label.text
         # Remove the word from the dictionary and image hash table
         if word in dictionary:
+
+            all_synonyms = dictionary[word.lower()]["synonym"]
+            for synonym in all_synonyms:
+                if synonym in dictionary and not dictionary[synonym]["meaning"] == f"Word Not Found, check out "+word:
+                    del dictionary[synonym]
+
             del dictionary[word]
 
             new_all_words:list = dictionary['allWords']
-            print(new_all_words)
             new_all_words.remove(word)
             dictionary['allWords'] = new_all_words
             db.writeToJson(dictionary)
@@ -355,7 +361,7 @@ class MeaningScreen(Screen):
         print("Word deleted successfully:", word)
         # Go back to the main screen
         self.manager.current = 'main_screen'
-        
+
 
         
 
